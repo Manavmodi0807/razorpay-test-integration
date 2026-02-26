@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Razorpay Test Payment</title>
+</head>
+<body>
+
+<h2>Razorpay Test Checkout</h2>
+
+<button id="pay-btn">Pay ₹500</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    "key": "{{ key }}",
+    "amount": "{{ order.amount }}",
+    "currency": "INR",
+    "name": "Django Razorpay Test",
+    "order_id": "{{ order.id }}",
+    "callback_url": "/success/"
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('pay-btn').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+
+</body>
+</html>
